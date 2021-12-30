@@ -3,11 +3,16 @@
      description: string
      date: string
  }
+ 
 
  //Custom form validation
  export const validate = (values: ValidationProps) => {
     //Here I need other solution for the inital value of error
-    const errors: ValidationProps = {title: "", description: "", date: ""};
+    const errors: ValidationProps = {
+      title: "",
+      description: "",
+      date: ""
+    };
 
     if (!values.title) {
       errors.title = "Title is required!";

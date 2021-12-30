@@ -14,7 +14,7 @@ const Todo = ({todos}: TodoProps) => {
     return (
         <div className='todos'>
             {todos.map(item => (
-                <div>
+                <div key={item.id}>
                     <span>{item.title}</span>
                     <span>{item.description}</span>
                     <span>{item.date}</span>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { TodosProps } from "./types/Types";
 import { useFormik } from "formik";
 import { validate } from "../validation/Validation";
@@ -12,6 +12,7 @@ type CreateProps = {
         completed: boolean
     }[]
     setTodos: React.Dispatch<React.SetStateAction<TodosProps[]>>
+    setCreateFormVisible: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 type FormikProps = {
@@ -20,11 +21,20 @@ type FormikProps = {
     date: string;
 }
 
-const CreateTodo = ({ todos, setTodos }: CreateProps) => {
+const CreateTodo = ({ todos, setTodos, setCreateFormVisible }: CreateProps) => {
 
     // This is how we set for event (e: React.FormEvent)
 
     const [seccessMessage, setSuccessMessage] = useState<boolean>(false)
+
+    const formRef = useRef<HTMLFormElement>(null);
+
+    //Function that exit the form when we click out of the form
+//   const handleExit = (e) => {
+//     if(!formRef.current.contains(e.target)) {
+//         setCreateFormVisible(false);
+//     }
+//   }
 
     //Formik library
     const formik = useFormik({
@@ -33,8 +43,9 @@ const CreateTodo = ({ todos, setTodos }: CreateProps) => {
             description: "",
             date: "",
         },
-        validate,
-        onSubmit: (values: FormikProps) => {
+        //validate,
+        onSubmit: (values) => {
+            console.log("USAO U SUBMIT!")
             setTodos([...todos, {
                 id: Math.random() * 10000,
                 title: values.title,
@@ -47,51 +58,58 @@ const CreateTodo = ({ todos, setTodos }: CreateProps) => {
     });
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <h3>Create new Todo</h3>
-            <div>
-                <div>
-                    <label>Title</label>
-                    <input
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.title}
-                        type="text"
-                        name="title"
-                    />
+        <div className='create_wrapper'>
+            <form onSubmit={formik.handleSubmit} ref={formRef}>
+                <h2 className='create_title'>Create new Todo</h2>
+                <div className='create_content'>
+                    <div>
+                        <label>Title</label>
+                        <input
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.title}
+                            type="text"
+                            name="title"
+                        />
+                    </div>
+                    {formik.touched.title && formik.errors.title && (
+                        <div className="error">{formik.errors.title}</div>
+                    )}
+                    <div>
+                        <label>Description</label>
+                        <input
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.description}
+                            type="text"
+                            name="description"
+                        />
+                    </div>
+                    {formik.touched.description && formik.errors.description && (
+                        <div className="error">{formik.errors.description}</div>
+                    )}
+                    <div>
+                        <label>Date</label>
+                        <input
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.date}
+                            type="date"
+                            name="date"
+                            id="date"
+                        />
+                    </div>
+                    {formik.touched.date && formik.errors.date && (
+                        <div className="error">{formik.errors.date}</div>
+                    )}
+                    <div className='create_btn'>
+                        <button type='submit'>Add new Todo</button>
+                    </div>
+                    {seccessMessage && <div className='success_msg'>Todo has been created!</div>}
                 </div>
-                {formik.touched.title && formik.errors.title && (
-                    <div className="error">{formik.errors.title}</div>
-                )}
-                <div>
-                    <label>Description</label>
-                    <input
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.description}
-                        type="text"
-                        name="description"
-                    />
-                </div>
-                {formik.touched.description && formik.errors.description && (
-                    <div className="error">{formik.errors.description}</div>
-                )}
-                <div>
-                    <label>Date</label>
-                    <input
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.date}
-                        type="date"
-                        name="date"
-                    />
-                </div>
-                {formik.touched.date && formik.errors.date && (
-                    <div className="error">{formik.errors.date}</div>
-                )}
-                <button type='submit'>Add new Todo</button>
-            </div>
-        </form>
+            </form>
+        </div>
+
     )
 }
 
