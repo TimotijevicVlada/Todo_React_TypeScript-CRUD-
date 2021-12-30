@@ -6,9 +6,8 @@ import axios from 'axios';
 
 const MotivationalMessage = () => {
 
-    const [motivateMsg, setMotivateMsg] = useState([{author: "Vlada", quote: "Nesto"}, {author: "Pera", quote: "Drugo"}]);
-
-    // console.log(motivateMsg)
+    //For some reason this state doesn't accept when I put  "<MotivateProps | null>"
+    const [motivateMsg, setMotivateMsg] = useState([{author: "", quote: ""}]); 
 
     //Function that get motivational message from API
     const getMotivate = async () => {
