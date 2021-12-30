@@ -3,4 +3,5 @@ export type TodosProps = {
     title: string
     description: string
     date: string
+    completed: boolean
 }
