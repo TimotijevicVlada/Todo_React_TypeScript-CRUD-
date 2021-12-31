@@ -13,11 +13,12 @@ type TodoProps = {
 const Todo = ({todos}: TodoProps) => {
     return (
         <div className='todos'>
-            {todos.map(item => (
-                <div key={item.id}>
-                    <span>{item.title}</span>
-                    <span>{item.description}</span>
-                    <span>{item.date}</span>
+            {todos.map((item, index) => (
+                <div key={item.id} className='todo'>
+                    <span className='index'>#{index + 1}</span>
+                    <span className='title'>{item.title}</span>
+                    <span className='description'>{item.description}</span>
+                    <span className='date'>{item.date}</span>
                 </div>
             ))}
         </div>

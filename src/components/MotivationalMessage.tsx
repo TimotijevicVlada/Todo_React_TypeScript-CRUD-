@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react';
 import Messages from './Messages';
 import axios from 'axios';
 
-
+type MessagesProps = {
+    author: string
+    quote: string
+}
 
 const MotivationalMessage = () => {
 
     //For some reason this state doesn't accept when I put  "<MotivateProps | null>"
-    const [motivateMsg, setMotivateMsg] = useState([{author: "", quote: ""}]); 
+    const [motivateMsg, setMotivateMsg] = useState<MessagesProps[]>([]); 
 
     //Function that get motivational message from API
     const getMotivate = async () => {

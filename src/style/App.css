@@ -39,20 +39,75 @@
   background-color: #9d4fe6;
 }
 
-.App .todos {
+.App .todos_wrapper {
   min-height: 86vh;
 }
 
-.App .todos h2 {
+.App .todos_wrapper h2 {
   padding: 10px 0px;
   text-align: center;
 }
 
-.App .todos .create_todo_btn {
+.App .todos_wrapper .todos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.App .todos_wrapper .todos .todo {
+  -webkit-box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.35);
+          box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.35);
+  width: 900px;
+  margin: 7px 0px;
+  padding: 20px;
+  border-radius: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.App .todos_wrapper .todos .todo:hover {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+.App .todos_wrapper .todos .todo .index {
+  width: 10%;
+  color: blueviolet;
+}
+
+.App .todos_wrapper .todos .todo .title {
+  width: 25%;
+}
+
+.App .todos_wrapper .todos .todo .description {
+  width: 50%;
+}
+
+.App .todos_wrapper .todos .todo .date {
+  width: 15%;
+  text-align: right;
+}
+
+.App .todos_wrapper .create_todo_btn {
   text-align: center;
 }
 
-.App .todos .create_todo_btn button {
+.App .todos_wrapper .create_todo_btn button {
   background-color: green;
   color: white;
   padding: 7px;
@@ -63,16 +118,16 @@
   border-radius: 5px;
 }
 
-.App .todos .create_todo_btn button:hover {
+.App .todos_wrapper .create_todo_btn button:hover {
   background-color: #2ba12b;
 }
 
-.App .todos .search_todos {
+.App .todos_wrapper .search_todos {
   margin: 10px 0px;
   text-align: center;
 }
 
-.App .todos .search_todos input {
+.App .todos_wrapper .search_todos input {
   padding: 7px;
   font-size: 17px;
   width: 300px;
@@ -82,11 +137,11 @@
   text-align: center;
 }
 
-.App .todos .search_todos input:focus {
+.App .todos_wrapper .search_todos input:focus {
   outline: none;
 }
 
-.App .todos .create_wrapper {
+.App .todos_wrapper .create_wrapper {
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -106,7 +161,7 @@
           align-items: center;
 }
 
-.App .todos .create_wrapper form {
+.App .todos_wrapper .create_wrapper form {
   background-color: lightgray;
   width: 350px;
   min-height: 400px;
@@ -142,12 +197,12 @@
   }
 }
 
-.App .todos .create_wrapper form .create_title {
+.App .todos_wrapper .create_wrapper form .create_title {
   font-weight: 200;
   text-align: center;
 }
 
-.App .todos .create_wrapper form .create_content div {
+.App .todos_wrapper .create_wrapper form .create_content div {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -159,17 +214,17 @@
   margin: 7px 0px;
 }
 
-.App .todos .create_wrapper form .create_content div input {
+.App .todos_wrapper .create_wrapper form .create_content div input {
   border: none;
   border-radius: 7px;
   padding: 7px 5px;
 }
 
-.App .todos .create_wrapper form .create_content div input:focus {
+.App .todos_wrapper .create_wrapper form .create_content div input:focus {
   outline: none;
 }
 
-.App .todos .create_wrapper form .create_content div button {
+.App .todos_wrapper .create_wrapper form .create_content div button {
   margin-top: 15px;
   padding: 7px 0px;
   border: none;
@@ -180,8 +235,60 @@
   cursor: pointer;
 }
 
-.App .todos .create_wrapper form .create_content .success_msg {
+.App .todos_wrapper .create_wrapper form .create_content .success_msg {
   color: green;
   text-align: center;
+}
+
+.App .motivate {
+  min-height: 86vh;
+}
+
+.App .motivate .title {
+  text-align: center;
+  padding: 10px;
+}
+
+.App .motivate .messages {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App .motivate .messages .msg {
+  width: 700px;
+  background-color: lightgray;
+  margin: 10px 0px;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.App .motivate .messages .msg .author {
+  text-align: right;
+  color: orange;
+}
+
+.App .footer {
+  text-align: center;
+  height: 7vh;
+  background-color: whitesmoke;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 18px;
 }
 /*# sourceMappingURL=App.css.map */
