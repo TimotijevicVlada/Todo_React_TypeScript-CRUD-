@@ -43,7 +43,7 @@ const CreateTodo = ({ todos, setTodos, setCreateFormVisible }: CreateProps) => {
             description: "",
             date: "",
         },
-        //validate,
+        validate,
         onSubmit: (values) => {
             console.log("USAO U SUBMIT!")
             setTodos([...todos, {

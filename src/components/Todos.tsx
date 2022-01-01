@@ -8,14 +8,14 @@ const Todos = () => {
     const [todos, setTodos] = useState<TodosProps[]>([{
         id: 121412,
         title: "Vlada title..",
-        description: "Tekst koji je napisao Vlada kako bi imao neki sadrzaj...",
+        description: "Tekst koji je napisao Vlada kako bi...",
         date: "31.12.2021",
         completed: false
     },
     {
         id: 1231231,
         title: "Pera title...",
-        description: "Tekst koji je napisao Pera kako bi imao neki sadrzaj...",
+        description: "Tekst koji je napisao Pera kako bi...",
         date: "31.12.2021",
         completed: false
     }]);
@@ -31,7 +31,7 @@ const Todos = () => {
             <div className='search_todos'>
                 <input type="text" placeholder='Search todo' />
             </div>
-            <Todo todos={todos} />
+            <Todo todos={todos} setTodos={setTodos}/>
 
             {crateFormVisible && <CreateTodo todos={todos} setTodos={setTodos} setCreateFormVisible={setCreateFormVisible} />}
         </div>

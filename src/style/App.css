@@ -86,21 +86,58 @@
 }
 
 .App .todos_wrapper .todos .todo .index {
-  width: 10%;
+  width: 5%;
   color: blueviolet;
 }
 
 .App .todos_wrapper .todos .todo .title {
-  width: 25%;
+  width: 20%;
 }
 
 .App .todos_wrapper .todos .todo .description {
-  width: 50%;
+  width: 45%;
 }
 
 .App .todos_wrapper .todos .todo .date {
-  width: 15%;
+  width: 10%;
   text-align: right;
+}
+
+.App .todos_wrapper .todos .todo .events {
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.App .todos_wrapper .todos .todo .events .update_btn {
+  background-color: orange;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 8px;
+  cursor: pointer;
+  color: white;
+}
+
+.App .todos_wrapper .todos .todo .events .update_btn:hover {
+  background-color: #f7b843;
+}
+
+.App .todos_wrapper .todos .todo .events .delete_btn {
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 8px;
+  cursor: pointer;
+  margin-left: 8px;
+  color: white;
+}
+
+.App .todos_wrapper .todos .todo .events .delete_btn:hover {
+  background-color: #fa3939;
 }
 
 .App .todos_wrapper .create_todo_btn {
@@ -233,6 +270,11 @@
   color: white;
   font-size: 17px;
   cursor: pointer;
+}
+
+.App .todos_wrapper .create_wrapper form .create_content .error {
+  color: red;
+  font-size: 13px;
 }
 
 .App .todos_wrapper .create_wrapper form .create_content .success_msg {

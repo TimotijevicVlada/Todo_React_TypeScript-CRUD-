@@ -55,18 +55,46 @@
              transform: scale(1.02);
            }
            .index {
-             width: 10%;
+             width: 5%;
              color: blueviolet;
            }
            .title {
-             width: 25%;
+             width: 20%;
            }
            .description {
-             width: 50%;
+             width: 45%;
            }
            .date {
-             width: 15%;
+             width: 10%;
              text-align: right;
+           }
+           .events {
+             width: 20%;
+             display: flex;
+             justify-content: flex-end;
+             .update_btn {
+               background-color: orange;
+               border: none;
+               border-radius: 5px;
+               padding: 5px 8px;
+               cursor: pointer;
+               color: white;
+               &:hover {
+                 background-color: rgb(247, 184, 67);
+               }
+             }
+             .delete_btn {
+              background-color: red;
+              border: none;
+              border-radius: 5px;
+              padding: 5px 8px;
+              cursor: pointer;
+              margin-left: 8px;
+              color: white;
+              &:hover {
+                background-color: rgb(250, 57, 57);
+              }
+             }
            }
       }
     }
@@ -157,6 +185,10 @@
                 font-size: 17px;
                 cursor: pointer;
             }
+          }
+          .error {
+            color: red;
+            font-size: 13px;
           }
           .success_msg {
             color: green;
