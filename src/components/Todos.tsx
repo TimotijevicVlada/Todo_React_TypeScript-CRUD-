@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Todo from './Todo';
 import CreateTodo from './CreateTodo';
+import UpdateTodo from './UpdateTodo';
 import { TodosProps } from "./types/Types";
 
 const Todos = () => {
@@ -21,6 +22,10 @@ const Todos = () => {
     }]);
 
     const [crateFormVisible, setCreateFormVisible] = useState<boolean>(false);
+    const [itemForUpdate, setItemForUpdate] = useState<TodosProps[]>([]);
+    const [updateFormVisible, setUpdateFormVisible] = useState<boolean>(false);
+
+    console.log(itemForUpdate)
 
     return (
         <div className='todos_wrapper'>
@@ -31,9 +36,11 @@ const Todos = () => {
             <div className='search_todos'>
                 <input type="text" placeholder='Search todo' />
             </div>
-            <Todo todos={todos} setTodos={setTodos}/>
+            <Todo todos={todos} setTodos={setTodos} setItemForUpdate={setItemForUpdate} setUpdateFormVisible={setUpdateFormVisible}/>
 
             {crateFormVisible && <CreateTodo todos={todos} setTodos={setTodos} setCreateFormVisible={setCreateFormVisible} />}
+
+            {updateFormVisible && <UpdateTodo/> }
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {TodosProps} from "./types/Types";
+import { TodosProps } from "./types/Types";
 
 type TodoProps = {
     todos: {
@@ -10,13 +10,21 @@ type TodoProps = {
         completed: boolean
     }[]
     setTodos: (value: React.SetStateAction<TodosProps[]>) => void
+    setItemForUpdate: React.Dispatch<React.SetStateAction<TodosProps[]>>
+    setUpdateFormVisible: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Todo = ({ todos, setTodos }: TodoProps) => {
+const Todo = ({ todos, setTodos, setItemForUpdate, setUpdateFormVisible }: TodoProps) => {
 
     const handleDelete = (id: number) => {
         const deletedItem = todos.filter(item => item.id !== id);
         setTodos(deletedItem);
+    }
+
+    const handleUpdate = (id: number) => {
+        setUpdateFormVisible(true);
+        const updateItem = todos.filter(item => item.id !== id);
+        setItemForUpdate(updateItem);
     }
 
     return (
@@ -28,7 +36,7 @@ const Todo = ({ todos, setTodos }: TodoProps) => {
                     <span className='description'>{item.description}</span>
                     <span className='date'>{item.date}</span>
                     <div className='events'>
-                        <button className='update_btn'>Update</button>
+                        <button onClick={() => handleUpdate(item.id)} className='update_btn'>Update</button>
                         <button onClick={() => handleDelete(item.id)} className='delete_btn'>Delete</button>
                     </div>
                 </div>

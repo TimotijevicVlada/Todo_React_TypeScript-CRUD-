@@ -178,7 +178,7 @@
   outline: none;
 }
 
-.App .todos_wrapper .create_wrapper {
+.App .todos_wrapper .create_wrapper, .App .todos_wrapper .update_wrapper {
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -198,7 +198,7 @@
           align-items: center;
 }
 
-.App .todos_wrapper .create_wrapper form {
+.App .todos_wrapper .create_wrapper form, .App .todos_wrapper .update_wrapper form {
   background-color: lightgray;
   width: 350px;
   min-height: 400px;
@@ -234,12 +234,12 @@
   }
 }
 
-.App .todos_wrapper .create_wrapper form .create_title {
+.App .todos_wrapper .create_wrapper form .create_title, .App .todos_wrapper .create_wrapper form .update_title, .App .todos_wrapper .update_wrapper form .create_title, .App .todos_wrapper .update_wrapper form .update_title {
   font-weight: 200;
   text-align: center;
 }
 
-.App .todos_wrapper .create_wrapper form .create_content div {
+.App .todos_wrapper .create_wrapper form .create_content div, .App .todos_wrapper .create_wrapper form .update_content div, .App .todos_wrapper .update_wrapper form .create_content div, .App .todos_wrapper .update_wrapper form .update_content div {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -251,17 +251,17 @@
   margin: 7px 0px;
 }
 
-.App .todos_wrapper .create_wrapper form .create_content div input {
+.App .todos_wrapper .create_wrapper form .create_content div input, .App .todos_wrapper .create_wrapper form .update_content div input, .App .todos_wrapper .update_wrapper form .create_content div input, .App .todos_wrapper .update_wrapper form .update_content div input {
   border: none;
   border-radius: 7px;
   padding: 7px 5px;
 }
 
-.App .todos_wrapper .create_wrapper form .create_content div input:focus {
+.App .todos_wrapper .create_wrapper form .create_content div input:focus, .App .todos_wrapper .create_wrapper form .update_content div input:focus, .App .todos_wrapper .update_wrapper form .create_content div input:focus, .App .todos_wrapper .update_wrapper form .update_content div input:focus {
   outline: none;
 }
 
-.App .todos_wrapper .create_wrapper form .create_content div button {
+.App .todos_wrapper .create_wrapper form .create_content div button, .App .todos_wrapper .create_wrapper form .update_content div button, .App .todos_wrapper .update_wrapper form .create_content div button, .App .todos_wrapper .update_wrapper form .update_content div button {
   margin-top: 15px;
   padding: 7px 0px;
   border: none;
@@ -272,12 +272,12 @@
   cursor: pointer;
 }
 
-.App .todos_wrapper .create_wrapper form .create_content .error {
+.App .todos_wrapper .create_wrapper form .create_content .error, .App .todos_wrapper .create_wrapper form .update_content .error, .App .todos_wrapper .update_wrapper form .create_content .error, .App .todos_wrapper .update_wrapper form .update_content .error {
   color: red;
   font-size: 13px;
 }
 
-.App .todos_wrapper .create_wrapper form .create_content .success_msg {
+.App .todos_wrapper .create_wrapper form .create_content .success_msg, .App .todos_wrapper .create_wrapper form .update_content .success_msg, .App .todos_wrapper .update_wrapper form .create_content .success_msg, .App .todos_wrapper .update_wrapper form .update_content .success_msg {
   color: green;
   text-align: center;
 }

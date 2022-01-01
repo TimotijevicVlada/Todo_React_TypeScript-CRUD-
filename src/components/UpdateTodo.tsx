@@ -1,67 +1,34 @@
-import React, { useState, useRef } from 'react';
-import { TodosProps } from "./types/Types";
-import { useFormik } from "formik";
-import { validate } from "../validation/Validation";
+import React from 'react';
+import { useFormik } from 'formik';
+import { validate } from '../validation/Validation';
+import {TodosProps} from "./types/Types";
 
 
-type CreateProps = {
-    todos: {
-        id: number
-        title: string
-        description: string
-        date: string
-        completed: boolean
-    }[]
-    setTodos: React.Dispatch<React.SetStateAction<TodosProps[]>>
-    setCreateFormVisible: React.Dispatch<React.SetStateAction<boolean>>
-}
 
-type FormikProps = {
-    title: string;
-    description: string;
-    date: string;
-}
+const UpdateTodo = () => {
 
-const CreateTodo = ({ todos, setTodos, setCreateFormVisible }: CreateProps) => {
 
-    // This is how we set for event (e: React.FormEvent)
 
-    const [seccessMessage, setSuccessMessage] = useState<boolean>(false)
-
-    const formRef = useRef<HTMLFormElement>(null);
-
-    //Function that exit the form when we click out of the form
-//   const handleExit = (e) => {
-//     if(!formRef.current.contains(e.target)) {
-//         setCreateFormVisible(false);
-//     }
-//   }
-
-    //Formik library
-    const formik = useFormik({
+     //Formik library
+     const formik = useFormik({
         initialValues: {
             title: "",
             description: "",
-            date: "",
+            date: ""
         },
         validate,
-        onSubmit: (values: FormikProps) => {
-            setTodos([...todos, {
-                id: Math.random() * 10000,
-                title: values.title,
-                description: values.description,
-                date: values.date,
-                completed: false
-            }])
-            setSuccessMessage(true);
+        onSubmit: (values) => {
+            console.log("USAO U SUBMIT!")
+            
+            //setSuccessMessage(true);
         },
     });
 
     return (
-        <div className='create_wrapper'>
-            <form onSubmit={formik.handleSubmit} ref={formRef}>
-                <h2 className='create_title'>Create new Todo</h2>
-                <div className='create_content'>
+        <div className='update_wrapper'>
+            <form onSubmit={formik.handleSubmit} >
+                <h2 className='update_title'>Update Todo</h2>
+                <div className='update_content'>
                     <div>
                         <label>Title</label>
                         <input
@@ -102,15 +69,14 @@ const CreateTodo = ({ todos, setTodos, setCreateFormVisible }: CreateProps) => {
                     {formik.touched.date && formik.errors.date && (
                         <div className="error">{formik.errors.date}</div>
                     )}
-                    <div className='create_btn'>
-                        <button type='submit'>Add new Todo</button>
+                    <div className='update_btn'>
+                        <button type='submit'>Update Todo</button>
                     </div>
-                    {seccessMessage && <div className='success_msg'>Todo has been created!</div>}
+                    {/* {seccessMessage && <div className='success_msg'>Todo has been updated!</div>} */}
                 </div>
             </form>
         </div>
-
     )
 }
 
-export default CreateTodo;
+export default UpdateTodo;
