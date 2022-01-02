@@ -10,22 +10,20 @@ const Todos = () => {
         id: 121412,
         title: "Vlada title..",
         description: "Tekst koji je napisao Vlada kako bi...",
-        date: "31.12.2021",
+        date: "12.31.2021",
         completed: false
     },
     {
         id: 1231231,
         title: "Pera title...",
         description: "Tekst koji je napisao Pera kako bi...",
-        date: "31.12.2021",
+        date: "12.30.2021",
         completed: false
     }]);
 
     const [crateFormVisible, setCreateFormVisible] = useState<boolean>(false);
     const [itemForUpdate, setItemForUpdate] = useState<TodosProps[]>([]);
     const [updateFormVisible, setUpdateFormVisible] = useState<boolean>(false);
-
-    console.log(itemForUpdate)
 
     return (
         <div className='todos_wrapper'>
@@ -40,7 +38,7 @@ const Todos = () => {
 
             {crateFormVisible && <CreateTodo todos={todos} setTodos={setTodos} setCreateFormVisible={setCreateFormVisible} />}
 
-            {updateFormVisible && <UpdateTodo/> }
+            {updateFormVisible && <UpdateTodo itemForUpdate={itemForUpdate} todos={todos} setTodos={setTodos}/> }
         </div>
     )
 }

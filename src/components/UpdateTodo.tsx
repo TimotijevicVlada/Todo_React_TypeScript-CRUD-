@@ -1,26 +1,48 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useFormik } from 'formik';
 import { validate } from '../validation/Validation';
-import {TodosProps} from "./types/Types";
+import { TodosProps } from "./types/Types";
 
+type UpdateProps = {
+    itemForUpdate: {
+        id: number
+        title: string
+        description: string
+        date: string
+        completed: boolean
+    }[]
+    todos: {
+        id: number
+        title: string
+        description: string
+        date: string
+        completed: boolean
+    }[]
+    setTodos: React.Dispatch<React.SetStateAction<TodosProps[]>>
+}
 
+const UpdateTodo = ({ itemForUpdate, todos, setTodos }: UpdateProps) => {
 
-const UpdateTodo = () => {
+    const [successMessage, setSuccessMessage] = useState<boolean>(false);
 
-
-
-     //Formik library
-     const formik = useFormik({
+    //Formik library
+    const formik = useFormik({
         initialValues: {
-            title: "",
-            description: "",
-            date: ""
+            title: itemForUpdate[0].title,
+            description: itemForUpdate[0].description,
+            date: itemForUpdate[0].date
         },
         validate,
         onSubmit: (values) => {
-            console.log("USAO U SUBMIT!")
-            
-            //setSuccessMessage(true);
+            const updatedTodos = todos.map((item) =>
+                item.id === itemForUpdate[0].id ? {
+                    ...item,
+                    title: values.title,
+                    desc: values.description,
+                    date: values.date,
+                } : item);
+                setTodos(updatedTodos);
+                setSuccessMessage(true);
         },
     });
 
@@ -72,7 +94,7 @@ const UpdateTodo = () => {
                     <div className='update_btn'>
                         <button type='submit'>Update Todo</button>
                     </div>
-                    {/* {seccessMessage && <div className='success_msg'>Todo has been updated!</div>} */}
+                    {successMessage && <div className='success_msg'>Todo has been updated!</div>}
                 </div>
             </form>
         </div>

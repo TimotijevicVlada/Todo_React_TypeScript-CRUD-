@@ -23,10 +23,9 @@ const Todo = ({ todos, setTodos, setItemForUpdate, setUpdateFormVisible }: TodoP
 
     const handleUpdate = (id: number) => {
         setUpdateFormVisible(true);
-        const updateItem = todos.filter(item => item.id !== id);
+        const updateItem = todos.filter(item => item.id === id);
         setItemForUpdate(updateItem);
     }
-
     return (
         <div className='todos'>
             {todos.map((item, index) => (
@@ -34,7 +33,7 @@ const Todo = ({ todos, setTodos, setItemForUpdate, setUpdateFormVisible }: TodoP
                     <span className='index'>#{index + 1}</span>
                     <span className='title'>{item.title}</span>
                     <span className='description'>{item.description}</span>
-                    <span className='date'>{item.date}</span>
+                    <span className='date'>{new Date(item.date).toDateString()}</span>
                     <div className='events'>
                         <button onClick={() => handleUpdate(item.id)} className='update_btn'>Update</button>
                         <button onClick={() => handleDelete(item.id)} className='delete_btn'>Delete</button>
