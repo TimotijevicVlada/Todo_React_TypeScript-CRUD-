@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { TodosProps } from "./types/Types";
+import DeleteWindow from "./DeleteWindow";
 
 type TodoProps = {
     todos: {
@@ -16,11 +17,17 @@ type TodoProps = {
 
 const Todo = ({ todos, setTodos, setItemForUpdate, setUpdateFormVisible }: TodoProps) => {
 
+    const [itemForDeleting, setItemForDeleting] = useState<TodosProps[]>([]);
+    const [deleteWindowVisible, setDeleteWindowVisible] = useState<boolean>(false);
+
+    //First click on delete button
     const handleDelete = (id: number) => {
-        const deletedItem = todos.filter(item => item.id !== id);
-        setTodos(deletedItem);
+        const deleteItem = todos.filter(item => item.id === id);
+        setItemForDeleting(deleteItem);
+        setDeleteWindowVisible(true);
     }
 
+    //Function that update the choosen item
     const handleUpdate = (id: number) => {
         setUpdateFormVisible(true);
         const updateItem = todos.filter(item => item.id === id);
@@ -40,6 +47,7 @@ const Todo = ({ todos, setTodos, setItemForUpdate, setUpdateFormVisible }: TodoP
                     </div>
                 </div>
             ))}
+            {deleteWindowVisible && <DeleteWindow itemForDeleting={itemForDeleting} todos={todos} setTodos={setTodos} setDeleteWindowVisible={setDeleteWindowVisible}/>}
         </div>
     )
 }

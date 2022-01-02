@@ -4,20 +4,8 @@ import { validate } from '../validation/Validation';
 import { TodosProps } from "./types/Types";
 
 type UpdateProps = {
-    itemForUpdate: {
-        id: number
-        title: string
-        description: string
-        date: string
-        completed: boolean
-    }[]
-    todos: {
-        id: number
-        title: string
-        description: string
-        date: string
-        completed: boolean
-    }[]
+    itemForUpdate: TodosProps[]
+    todos: TodosProps[]
     setTodos: React.Dispatch<React.SetStateAction<TodosProps[]>>
 }
 

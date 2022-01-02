@@ -5,13 +5,7 @@ import { validate } from "../validation/Validation";
 
 
 type CreateProps = {
-    todos: {
-        id: number
-        title: string
-        description: string
-        date: string
-        completed: boolean
-    }[]
+    todos: TodosProps[]
     setTodos: React.Dispatch<React.SetStateAction<TodosProps[]>>
     setCreateFormVisible: React.Dispatch<React.SetStateAction<boolean>>
 }
