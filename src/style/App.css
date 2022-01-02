@@ -65,8 +65,9 @@
   -webkit-box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.35);
           box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.35);
   width: 900px;
+  height: 70px;
   margin: 7px 0px;
-  padding: 20px;
+  padding-right: 10px;
   border-radius: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -88,21 +89,33 @@
           transform: scale(1.02);
 }
 
-.App .todos_wrapper .todos .todo .index {
+.App .todos_wrapper .todos .todo .todo_info {
+  height: 100%;
+  width: 85%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 10px;
+}
+
+.App .todos_wrapper .todos .todo .todo_info .index {
   width: 5%;
   color: blueviolet;
 }
 
-.App .todos_wrapper .todos .todo .title {
+.App .todos_wrapper .todos .todo .todo_info .title {
   width: 20%;
 }
 
-.App .todos_wrapper .todos .todo .description {
-  width: 45%;
+.App .todos_wrapper .todos .todo .todo_info .description {
+  width: 50%;
 }
 
-.App .todos_wrapper .todos .todo .date {
-  width: 15%;
+.App .todos_wrapper .todos .todo .todo_info .date {
+  width: 20%;
   text-align: right;
 }
 
@@ -210,6 +223,68 @@
   background-color: #fc3131;
 }
 
+.App .todos_wrapper .todos .details_wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(7px);
+          backdrop-filter: blur(7px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App .todos_wrapper .todos .details_wrapper .details {
+  background-color: lightgray;
+  width: 350px;
+  min-height: 400px;
+  border-radius: 15px;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-animation: fadeInDetails 0.4s linear;
+          animation: fadeInDetails 0.4s linear;
+  font-size: 18px;
+}
+
+@-webkit-keyframes fadeInDetails {
+  0% {
+    -webkit-transform: translateY(3rem);
+            transform: translateY(3rem);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInDetails {
+  0% {
+    -webkit-transform: translateY(3rem);
+            transform: translateY(3rem);
+    opacity: 0;
+  }
+}
+
+.App .todos_wrapper .todos .details_wrapper .details .details_date {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
 .App .todos_wrapper .create_todo_btn {
   text-align: center;
 }
@@ -248,7 +323,8 @@
   outline: none;
 }
 
-.App .todos_wrapper .create_wrapper, .App .todos_wrapper .update_wrapper {
+.App .todos_wrapper .create_wrapper,
+.App .todos_wrapper .update_wrapper {
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -268,7 +344,8 @@
           align-items: center;
 }
 
-.App .todos_wrapper .create_wrapper form, .App .todos_wrapper .update_wrapper form {
+.App .todos_wrapper .create_wrapper form,
+.App .todos_wrapper .update_wrapper form {
   background-color: lightgray;
   width: 350px;
   min-height: 400px;
@@ -304,12 +381,18 @@
   }
 }
 
-.App .todos_wrapper .create_wrapper form .create_title, .App .todos_wrapper .create_wrapper form .update_title, .App .todos_wrapper .update_wrapper form .create_title, .App .todos_wrapper .update_wrapper form .update_title {
+.App .todos_wrapper .create_wrapper form .create_title,
+.App .todos_wrapper .create_wrapper form .update_title,
+.App .todos_wrapper .update_wrapper form .create_title,
+.App .todos_wrapper .update_wrapper form .update_title {
   font-weight: 200;
   text-align: center;
 }
 
-.App .todos_wrapper .create_wrapper form .create_content div, .App .todos_wrapper .create_wrapper form .update_content div, .App .todos_wrapper .update_wrapper form .create_content div, .App .todos_wrapper .update_wrapper form .update_content div {
+.App .todos_wrapper .create_wrapper form .create_content div,
+.App .todos_wrapper .create_wrapper form .update_content div,
+.App .todos_wrapper .update_wrapper form .create_content div,
+.App .todos_wrapper .update_wrapper form .update_content div {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -321,17 +404,26 @@
   margin: 7px 0px;
 }
 
-.App .todos_wrapper .create_wrapper form .create_content div input, .App .todos_wrapper .create_wrapper form .update_content div input, .App .todos_wrapper .update_wrapper form .create_content div input, .App .todos_wrapper .update_wrapper form .update_content div input {
+.App .todos_wrapper .create_wrapper form .create_content div input,
+.App .todos_wrapper .create_wrapper form .update_content div input,
+.App .todos_wrapper .update_wrapper form .create_content div input,
+.App .todos_wrapper .update_wrapper form .update_content div input {
   border: none;
   border-radius: 7px;
   padding: 7px 5px;
 }
 
-.App .todos_wrapper .create_wrapper form .create_content div input:focus, .App .todos_wrapper .create_wrapper form .update_content div input:focus, .App .todos_wrapper .update_wrapper form .create_content div input:focus, .App .todos_wrapper .update_wrapper form .update_content div input:focus {
+.App .todos_wrapper .create_wrapper form .create_content div input:focus,
+.App .todos_wrapper .create_wrapper form .update_content div input:focus,
+.App .todos_wrapper .update_wrapper form .create_content div input:focus,
+.App .todos_wrapper .update_wrapper form .update_content div input:focus {
   outline: none;
 }
 
-.App .todos_wrapper .create_wrapper form .create_content div button, .App .todos_wrapper .create_wrapper form .update_content div button, .App .todos_wrapper .update_wrapper form .create_content div button, .App .todos_wrapper .update_wrapper form .update_content div button {
+.App .todos_wrapper .create_wrapper form .create_content div button,
+.App .todos_wrapper .create_wrapper form .update_content div button,
+.App .todos_wrapper .update_wrapper form .create_content div button,
+.App .todos_wrapper .update_wrapper form .update_content div button {
   margin-top: 15px;
   padding: 7px 0px;
   border: none;
@@ -342,12 +434,18 @@
   cursor: pointer;
 }
 
-.App .todos_wrapper .create_wrapper form .create_content .error, .App .todos_wrapper .create_wrapper form .update_content .error, .App .todos_wrapper .update_wrapper form .create_content .error, .App .todos_wrapper .update_wrapper form .update_content .error {
+.App .todos_wrapper .create_wrapper form .create_content .error,
+.App .todos_wrapper .create_wrapper form .update_content .error,
+.App .todos_wrapper .update_wrapper form .create_content .error,
+.App .todos_wrapper .update_wrapper form .update_content .error {
   color: red;
   font-size: 13px;
 }
 
-.App .todos_wrapper .create_wrapper form .create_content .success_msg, .App .todos_wrapper .create_wrapper form .update_content .success_msg, .App .todos_wrapper .update_wrapper form .create_content .success_msg, .App .todos_wrapper .update_wrapper form .update_content .success_msg {
+.App .todos_wrapper .create_wrapper form .create_content .success_msg,
+.App .todos_wrapper .create_wrapper form .update_content .success_msg,
+.App .todos_wrapper .update_wrapper form .create_content .success_msg,
+.App .todos_wrapper .update_wrapper form .update_content .success_msg {
   color: green;
   text-align: center;
 }
