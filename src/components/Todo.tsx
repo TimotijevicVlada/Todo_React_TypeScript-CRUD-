@@ -3,13 +3,7 @@ import { TodosProps } from "./types/Types";
 import DeleteWindow from "./DeleteWindow";
 
 type TodoProps = {
-    todos: {
-        id: number
-        title: string
-        description: string
-        date: string
-        completed: boolean
-    }[]
+    todos: TodosProps[]
     setTodos: (value: React.SetStateAction<TodosProps[]>) => void
     setItemForUpdate: React.Dispatch<React.SetStateAction<TodosProps[]>>
     setUpdateFormVisible: React.Dispatch<React.SetStateAction<boolean>>

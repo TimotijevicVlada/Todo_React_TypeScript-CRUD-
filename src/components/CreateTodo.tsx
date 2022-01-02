@@ -48,6 +48,9 @@ const CreateTodo = ({ todos, setTodos, setCreateFormVisible }: CreateProps) => {
                 completed: false
             }])
             setSuccessMessage(true);
+            setTimeout(() => {
+                setCreateFormVisible(false);
+            }, 2000)
         },
     });
 

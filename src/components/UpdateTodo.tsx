@@ -7,9 +7,10 @@ type UpdateProps = {
     itemForUpdate: TodosProps[]
     todos: TodosProps[]
     setTodos: React.Dispatch<React.SetStateAction<TodosProps[]>>
+    setUpdateFormVisible : React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const UpdateTodo = ({ itemForUpdate, todos, setTodos }: UpdateProps) => {
+const UpdateTodo = ({ itemForUpdate, todos, setTodos, setUpdateFormVisible }: UpdateProps) => {
 
     const [successMessage, setSuccessMessage] = useState<boolean>(false);
 
@@ -31,6 +32,9 @@ const UpdateTodo = ({ itemForUpdate, todos, setTodos }: UpdateProps) => {
                 } : item);
                 setTodos(updatedTodos);
                 setSuccessMessage(true);
+                setTimeout(() => {
+                    setUpdateFormVisible(false);
+                }, 2000)
         },
     });
 

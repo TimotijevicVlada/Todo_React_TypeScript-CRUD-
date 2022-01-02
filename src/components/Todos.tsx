@@ -39,7 +39,7 @@ const Todos = () => {
 
             {crateFormVisible && <CreateTodo todos={todos} setTodos={setTodos} setCreateFormVisible={setCreateFormVisible} />}
 
-            {updateFormVisible && <UpdateTodo itemForUpdate={itemForUpdate} todos={todos} setTodos={setTodos}/> }
+            {updateFormVisible && <UpdateTodo itemForUpdate={itemForUpdate} todos={todos} setTodos={setTodos} setUpdateFormVisible={setUpdateFormVisible}/> }
         </div>
     )
 }
