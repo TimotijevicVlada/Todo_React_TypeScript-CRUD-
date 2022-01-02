@@ -24,7 +24,22 @@ const Todos = () => {
     const [crateFormVisible, setCreateFormVisible] = useState<boolean>(false);
     const [itemForUpdate, setItemForUpdate] = useState<TodosProps[]>([]);
     const [updateFormVisible, setUpdateFormVisible] = useState<boolean>(false);
-    
+    const [search, setSearch] = useState<string>("");
+
+    //Variable that sort all todos ascending by date
+    const sortedTodos = todos.sort((a: TodosProps, b: TodosProps) => new Date(a.date) > new Date(b.date) ? 1 : -1);
+
+    //Variable that represent searched todos
+    const searchedTodos = sortedTodos.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+    //Function that set searched todo
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setTimeout(() => {
+            setSearch(e.target.value);
+        }, 500)
+    }
 
     return (
         <div className='todos_wrapper'>
@@ -33,13 +48,13 @@ const Todos = () => {
                 <button onClick={() => setCreateFormVisible(true)}>Create new todo</button>
             </div>
             <div className='search_todos'>
-                <input type="text" placeholder='Search todo' />
+                <input  onChange={(e) => handleSearch(e)} type="text" placeholder='Search todo' />
             </div>
-            <Todo todos={todos} setTodos={setTodos} setItemForUpdate={setItemForUpdate} setUpdateFormVisible={setUpdateFormVisible}/>
+            <Todo todos={searchedTodos} setTodos={setTodos} setItemForUpdate={setItemForUpdate} setUpdateFormVisible={setUpdateFormVisible} />
 
             {crateFormVisible && <CreateTodo todos={todos} setTodos={setTodos} setCreateFormVisible={setCreateFormVisible} />}
 
-            {updateFormVisible && <UpdateTodo itemForUpdate={itemForUpdate} todos={todos} setTodos={setTodos} setUpdateFormVisible={setUpdateFormVisible}/> }
+            {updateFormVisible && <UpdateTodo itemForUpdate={itemForUpdate} todos={todos} setTodos={setTodos} setUpdateFormVisible={setUpdateFormVisible} />}
         </div>
     )
 }
