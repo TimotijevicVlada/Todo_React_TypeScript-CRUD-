@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { useFormik } from 'formik';
 import { validate } from '../validation/Validation';
 import { TodosProps } from "./types/Types";
@@ -13,6 +13,15 @@ type UpdateProps = {
 const UpdateTodo = ({ itemForUpdate, todos, setTodos, setUpdateFormVisible }: UpdateProps) => {
 
     const [successMessage, setSuccessMessage] = useState<boolean>(false);
+    const formRef = useRef<HTMLFormElement>(null);
+
+    //Function that exit the form when we click out of the form
+    //Insted of "React.MouseEvent<HTMLDivElement>" I put "any" because I couldn't solve the error.
+    const handleExit = (event: any) => {
+            if (!formRef.current?.contains(event.target)) {
+                setUpdateFormVisible(false);
+            }
+    }
 
     //Formik library
     const formik = useFormik({
@@ -39,8 +48,8 @@ const UpdateTodo = ({ itemForUpdate, todos, setTodos, setUpdateFormVisible }: Up
     });
 
     return (
-        <div className='update_wrapper'>
-            <form onSubmit={formik.handleSubmit} >
+        <div onClick={handleExit} className='update_wrapper'>
+            <form onSubmit={formik.handleSubmit} ref={formRef}>
                 <h2 className='update_title'>Update Todo</h2>
                 <div className='update_content'>
                     <div>

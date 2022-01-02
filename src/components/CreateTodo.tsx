@@ -18,18 +18,16 @@ type FormikProps = {
 
 const CreateTodo = ({ todos, setTodos, setCreateFormVisible }: CreateProps) => {
 
-    // This is how we set for event (e: React.FormEvent)
-
     const [seccessMessage, setSuccessMessage] = useState<boolean>(false)
-
     const formRef = useRef<HTMLFormElement>(null);
 
     //Function that exit the form when we click out of the form
-//   const handleExit = (e) => {
-//     if(!formRef.current.contains(e.target)) {
-//         setCreateFormVisible(false);
-//     }
-//   }
+    //Insted of "React.MouseEvent<HTMLDivElement>" I put "any" because I couldn't solve the error.
+    const handleExit = (event: any) => {
+            if (!formRef.current?.contains(event.target)) {
+                setCreateFormVisible(false);
+            }
+    }
 
     //Formik library
     const formik = useFormik({
@@ -55,7 +53,7 @@ const CreateTodo = ({ todos, setTodos, setCreateFormVisible }: CreateProps) => {
     });
 
     return (
-        <div className='create_wrapper'>
+        <div onClick={handleExit} className='create_wrapper'>
             <form onSubmit={formik.handleSubmit} ref={formRef}>
                 <h2 className='create_title'>Create new Todo</h2>
                 <div className='create_content'>
