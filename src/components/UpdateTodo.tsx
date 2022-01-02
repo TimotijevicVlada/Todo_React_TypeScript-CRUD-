@@ -16,7 +16,7 @@ const UpdateTodo = ({ itemForUpdate, todos, setTodos, setUpdateFormVisible }: Up
     const formRef = useRef<HTMLFormElement>(null);
 
     //Function that exit the form when we click out of the form
-    //Insted of "React.MouseEvent<HTMLDivElement>" I put "any" because I couldn't solve the error.
+    //Insted of "React.MouseEvent<HTMLDivElement>" I put "any" because I couldn't solve the error with target
     const handleExit = (event: any) => {
             if (!formRef.current?.contains(event.target)) {
                 setUpdateFormVisible(false);

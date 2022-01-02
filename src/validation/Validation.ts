@@ -7,7 +7,7 @@
 
  //Custom form validation
  export const validate = (values: ValidationProps) => {
-    //Here I need other solution for the inital value of error!!!!!
+    //Here I need other solution for "type" of errors!!!!!
     const errors: any = {}
 
     if (!values.title) {

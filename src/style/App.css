@@ -3,6 +3,7 @@
           box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Poppins";
 }
 
 .App .navbar {
@@ -103,7 +104,7 @@
 
 .App .todos_wrapper .todos .todo .todo_info .index {
   width: 5%;
-  color: blueviolet;
+  color: green;
 }
 
 .App .todos_wrapper .todos .todo .todo_info .title {
@@ -127,6 +128,13 @@
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App .todos_wrapper .todos .todo .events .fa-check {
+  color: green;
 }
 
 .App .todos_wrapper .todos .todo .events .update_btn {
@@ -136,6 +144,7 @@
   padding: 5px 8px;
   cursor: pointer;
   color: white;
+  margin-left: 8px;
 }
 
 .App .todos_wrapper .todos .todo .events .update_btn:hover {
@@ -154,6 +163,12 @@
 
 .App .todos_wrapper .todos .todo .events .delete_btn:hover {
   background-color: #fa3939;
+}
+
+.App .todos_wrapper .todos .completed {
+  -webkit-box-shadow: 0px 0px 7px 2px green;
+          box-shadow: 0px 0px 7px 2px green;
+  text-decoration: line-through;
 }
 
 .App .todos_wrapper .todos .delete_wrapper {
@@ -483,7 +498,7 @@
 
 .App .motivate .messages .msg .author {
   text-align: right;
-  color: orange;
+  color: green;
 }
 
 .App .footer {

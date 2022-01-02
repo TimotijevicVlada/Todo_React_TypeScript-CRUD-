@@ -10,7 +10,7 @@ const Details = ({ detailsItem, setDetailsVisible }: DetailsProps) => {
 
     const detailsRef = useRef<HTMLDivElement>(null);
     //Function that exit the form when we click out of the form
-    //Insted of "React.MouseEvent<HTMLDivElement>" I put "any" because I couldn't solve the error.
+    //Insted of "React.MouseEvent<HTMLDivElement>" I put "any" because I couldn't solve the error with target
     const handleExit = (event: any) => {
         if (!detailsRef.current?.contains(event.target)) {
             setDetailsVisible(false);

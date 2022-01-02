@@ -3,17 +3,10 @@ import { TodosProps } from "./types/Types";
 import { useFormik } from "formik";
 import { validate } from "../validation/Validation";
 
-
 type CreateProps = {
     todos: TodosProps[]
     setTodos: React.Dispatch<React.SetStateAction<TodosProps[]>>
     setCreateFormVisible: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-type FormikProps = {
-    title: string;
-    description: string;
-    date: string;
 }
 
 const CreateTodo = ({ todos, setTodos, setCreateFormVisible }: CreateProps) => {
@@ -22,7 +15,7 @@ const CreateTodo = ({ todos, setTodos, setCreateFormVisible }: CreateProps) => {
     const formRef = useRef<HTMLFormElement>(null);
 
     //Function that exit the form when we click out of the form
-    //Insted of "React.MouseEvent<HTMLDivElement>" I put "any" because I couldn't solve the error.
+    //Insted of "React.MouseEvent<HTMLDivElement>" I put "any" because I couldn't solve the error with target
     const handleExit = (event: any) => {
             if (!formRef.current?.contains(event.target)) {
                 setCreateFormVisible(false);
@@ -37,7 +30,7 @@ const CreateTodo = ({ todos, setTodos, setCreateFormVisible }: CreateProps) => {
             date: "",
         },
         validate,
-        onSubmit: (values: FormikProps) => {
+        onSubmit: (values) => {
             setTodos([...todos, {
                 id: Math.random() * 10000,
                 title: values.title,

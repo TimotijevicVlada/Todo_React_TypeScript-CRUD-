@@ -6,21 +6,7 @@ import { TodosProps } from "./types/Types";
 
 const Todos = () => {
 
-    const [todos, setTodos] = useState<TodosProps[]>([{
-        id: 121412,
-        title: "Vlada title..",
-        description: "Tekst koji je napisao Vlada kako bi...",
-        date: "12.31.2021",
-        completed: false
-    },
-    {
-        id: 1231231,
-        title: "Pera title...",
-        description: "Tekst koji je napisao Pera kako bi...",
-        date: "12.30.2021",
-        completed: false
-    }]);
-
+    const [todos, setTodos] = useState<TodosProps[]>([]);
     const [crateFormVisible, setCreateFormVisible] = useState<boolean>(false);
     const [itemForUpdate, setItemForUpdate] = useState<TodosProps[]>([]);
     const [updateFormVisible, setUpdateFormVisible] = useState<boolean>(false);

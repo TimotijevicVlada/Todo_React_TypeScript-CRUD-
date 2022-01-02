@@ -38,10 +38,23 @@ const Todo = ({ todos, setTodos, setItemForUpdate, setUpdateFormVisible }: TodoP
         setDetailsVisible(true);
     }
 
+    //Handle complete 
+    const completeHandler = (id: number) => {
+        setTodos(todos.map(item => {
+            if (item.id === id) {
+                return {
+                    ...item,
+                    completed: !item.completed
+                }
+            }
+            return item;
+        }))
+    }
+
     return (
         <div className='todos'>
             {todos.map((item, index) => (
-                <div key={item.id} className='todo'>
+                <div key={item.id} className={item.completed ? "todo completed" : "todo"}>
                     <div onClick={() => handleDetails(item.id)} className='todo_info'>
                         <span className='index'>#{index + 1}</span>
                         <span className='title'>{item.title}</span>
@@ -49,6 +62,7 @@ const Todo = ({ todos, setTodos, setItemForUpdate, setUpdateFormVisible }: TodoP
                         <span className='date'>{new Date(item.date).toDateString()}</span>
                     </div>
                     <div className='events'>
+                        <i onClick={() => completeHandler(item.id)} className='fas fa-check'></i>
                         <button onClick={() => handleUpdate(item.id)} className='update_btn'>Update</button>
                         <button onClick={() => handleDelete(item.id)} className='delete_btn'>Delete</button>
                     </div>
