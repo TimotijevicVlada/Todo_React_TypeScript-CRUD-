@@ -27,30 +27,29 @@ const Todos = () => {
         }, 500)
     }
 
-    // //PROBLEM WITH GETTING THE TODOS FROM LOCAL STORAGE
-    // //Function that get todos from the local storage
-    // const getLocalTodos = () => {
-    //     const storage = localStorage.getItem("MyTodos");
-    //     if (storage === null) {
-    //         localStorage.setItem("MyTodos", JSON.stringify([]));
-    //     } else {
-    //         const myTodos = JSON.parse(localStorage.getItem("MyTodos"));
-    //         setTodos(myTodos)
-    //     }
-    // };
+    //Function that get todos from the local storage
+    const getLocalTodos = () => {
+        const storage = localStorage.getItem("MyTodos");
+        if (storage === null) {
+            localStorage.setItem("MyTodos", JSON.stringify([]));
+        } else {
+            const myTodos = JSON.parse(localStorage.getItem("MyTodos") || "");
+            setTodos(myTodos)
+        }
+    };
 
-    // useEffect(() => {
-    //     getLocalTodos();
-    // }, []);
+    useEffect(() => {
+        getLocalTodos();
+    }, []);
 
-    // //Function that save todos to local storage
-    // const saveLocaleTodos = useCallback(() => {
-    //     localStorage.setItem("MyTodos", JSON.stringify(todos));
-    // }, [todos]);
+    //Function that save todos to local storage
+    const saveLocaleTodos = useCallback(() => {
+        localStorage.setItem("MyTodos", JSON.stringify(todos));
+    }, [todos]);
 
-    // useEffect(() => {
-    //     saveLocaleTodos();
-    // }, [saveLocaleTodos]);
+    useEffect(() => {
+        saveLocaleTodos();
+    }, [saveLocaleTodos]);
 
     return (
         <div className='todos_wrapper'>
