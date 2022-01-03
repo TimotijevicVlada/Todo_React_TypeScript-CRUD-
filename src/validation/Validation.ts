@@ -1,14 +1,14 @@
+ //I need optional keys inside this object
  type ValidationProps = {
-     title: string
-     description: string
-     date: string
+     title?: string
+     description?: string
+     date?: string
  }
  
-
  //Custom form validation
  export const validate = (values: ValidationProps) => {
-    //Here I need other solution for "type" of errors!!!!!
-    const errors: any = {}
+    //Or it can be const errors = <ValidationProps>{}
+    const errors = {} as ValidationProps;
 
     if (!values.title) {
       errors.title = "Title is required!";

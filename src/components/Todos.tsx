@@ -27,6 +27,7 @@ const Todos = () => {
         }, 500)
     }
 
+    //PROBLEM WITH GETTING THE TODOS FROM LOCAL STORAGE
     // //Function that get todos from the local storage
     // const getLocalTodos = () => {
     //     if (localStorage.getItem("MyTodos") === null) {
