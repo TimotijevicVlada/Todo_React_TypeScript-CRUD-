@@ -27,7 +27,7 @@ const Details = ({ detailsItem, setDetailsVisible }: DetailsProps) => {
                     <p>{detailsItem[0].description}</p>
                 </div>
                 <div className='details_date'>
-                    <p>{detailsItem[0].date}</p>
+                    <p>{new Date(detailsItem[0].date).toDateString()}</p>
                 </div>
             </div>
         </div>

@@ -36,7 +36,7 @@ const UpdateTodo = ({ itemForUpdate, todos, setTodos, setUpdateFormVisible }: Up
                 item.id === itemForUpdate[0].id ? {
                     ...item,
                     title: values.title,
-                    desc: values.description,
+                    description: values.description,
                     date: values.date,
                 } : item);
                 setTodos(updatedTodos);

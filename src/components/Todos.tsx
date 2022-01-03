@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Todo from './Todo';
 import CreateTodo from './CreateTodo';
 import UpdateTodo from './UpdateTodo';
@@ -27,6 +27,29 @@ const Todos = () => {
         }, 500)
     }
 
+    // //Function that get todos from the local storage
+    // const getLocalTodos = () => {
+    //     if (localStorage.getItem("MyTodos") === null) {
+    //         localStorage.setItem("MyTodos", JSON.stringify([]));
+    //     } else {
+    //         const myTodos = JSON.parse(localStorage.getItem("MyTodos"));
+    //         setTodos(myTodos);
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     getLocalTodos();
+    // }, []);
+
+    // //Function that save todos to local storage
+    // const saveLocaleTodos = useCallback(() => {
+    //     localStorage.setItem("MyTodos", JSON.stringify(todos));
+    // }, [todos]);
+
+    // useEffect(() => {
+    //     saveLocaleTodos();
+    // }, [saveLocaleTodos]);
+
     return (
         <div className='todos_wrapper'>
             <h2>My Todo List</h2>
@@ -34,10 +57,11 @@ const Todos = () => {
                 <button onClick={() => setCreateFormVisible(true)}>Create new todo</button>
             </div>
             <div className='search_todos'>
-                <input  onChange={(e) => handleSearch(e)} type="text" placeholder='Search todo' />
+                <input onChange={(e) => handleSearch(e)} type="text" placeholder='Search todo' />
             </div>
+            {todos.length < 1 ? <div className='no_todos'>There is no todos yet!</div> : 
             <Todo todos={searchedTodos} setTodos={setTodos} setItemForUpdate={setItemForUpdate} setUpdateFormVisible={setUpdateFormVisible} />
-
+            }
             {crateFormVisible && <CreateTodo todos={todos} setTodos={setTodos} setCreateFormVisible={setCreateFormVisible} />}
 
             {updateFormVisible && <UpdateTodo itemForUpdate={itemForUpdate} todos={todos} setTodos={setTodos} setUpdateFormVisible={setUpdateFormVisible} />}

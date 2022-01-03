@@ -338,6 +338,12 @@
   outline: none;
 }
 
+.App .todos_wrapper .no_todos {
+  text-align: center;
+  padding: 40px 0px;
+  font-size: 25px;
+}
+
 .App .todos_wrapper .create_wrapper,
 .App .todos_wrapper .update_wrapper {
   position: fixed;
@@ -472,6 +478,11 @@
 .App .motivate .title {
   text-align: center;
   padding: 10px;
+}
+
+.App .motivate .loading {
+  text-align: center;
+  padding: 30px 0px;
 }
 
 .App .motivate .messages {
