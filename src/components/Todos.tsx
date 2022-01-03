@@ -27,14 +27,15 @@ const Todos = () => {
         }, 500)
     }
 
-    //PROBLEM WITH GETTING THE TODOS FROM LOCAL STORAGE
+    // //PROBLEM WITH GETTING THE TODOS FROM LOCAL STORAGE
     // //Function that get todos from the local storage
     // const getLocalTodos = () => {
-    //     if (localStorage.getItem("MyTodos") === null) {
+    //     const storage = localStorage.getItem("MyTodos");
+    //     if (storage === null) {
     //         localStorage.setItem("MyTodos", JSON.stringify([]));
     //     } else {
     //         const myTodos = JSON.parse(localStorage.getItem("MyTodos"));
-    //         setTodos(myTodos);
+    //         setTodos(myTodos)
     //     }
     // };
 
@@ -60,8 +61,8 @@ const Todos = () => {
             <div className='search_todos'>
                 <input onChange={(e) => handleSearch(e)} type="text" placeholder='Search todo' />
             </div>
-            {todos.length < 1 ? <div className='no_todos'>There is no todos yet!</div> : 
-            <Todo todos={searchedTodos} setTodos={setTodos} setItemForUpdate={setItemForUpdate} setUpdateFormVisible={setUpdateFormVisible} />
+            {todos.length < 1 ? <div className='no_todos'>There is no todos yet!</div> :
+                <Todo todos={searchedTodos} setTodos={setTodos} setItemForUpdate={setItemForUpdate} setUpdateFormVisible={setUpdateFormVisible} />
             }
             {crateFormVisible && <CreateTodo todos={todos} setTodos={setTodos} setCreateFormVisible={setCreateFormVisible} />}
 

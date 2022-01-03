@@ -571,6 +571,9 @@
     padding: 5px;
     margin-left: 3px;
   }
+  .App .todos_wrapper .todos .delete_wrapper .delete {
+    width: 95%;
+  }
   .App .motivate .messages .msg {
     width: 90%;
     font-size: 15px;
@@ -603,6 +606,9 @@
   .App .todos_wrapper .todos .todo .events .update_btn,
   .App .todos_wrapper .todos .todo .events .delete_btn {
     margin-top: 3px;
+  }
+  .App .todos_wrapper .todos .delete_wrapper .delete .delete_question {
+    font-size: 15px;
   }
   .App .motivate .messages .msg {
     width: 98%;

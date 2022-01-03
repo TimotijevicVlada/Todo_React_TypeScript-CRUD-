@@ -396,6 +396,11 @@
             }
           }
         }
+        .delete_wrapper {
+          .delete {
+            width: 95%;
+          }
+        }
       }
     }
     .motivate {
@@ -433,6 +438,13 @@
             .update_btn,
             .delete_btn {
               margin-top: 3px;
+            }
+          }
+        }
+        .delete_wrapper {
+          .delete {
+            .delete_question {
+              font-size: 15px;
             }
           }
         }
