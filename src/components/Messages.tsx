@@ -1,13 +1,8 @@
 import React from 'react';
+import { MotivateProps } from '../types/types';
 
-type MotivateProps = {
-    motivateMsg: {
-        author: string
-        quote: string
-    }[]
-}
+const Messages: React.FC<MotivateProps> = ({ motivateMsg }) => {
 
-const Messages = ({ motivateMsg }: MotivateProps) => {
     return (
         <div className='messages'>
             {motivateMsg.map((item, index) => (

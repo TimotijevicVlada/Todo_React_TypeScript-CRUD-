@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from 'react';
 import Todo from './Todo';
 import CreateTodo from './CreateTodo';
 import UpdateTodo from './UpdateTodo';
-import { TodosProps } from "./types/Types";
+import { TodosProps } from "../types/types";
 
 const Todos = () => {
 
@@ -19,6 +19,10 @@ const Todos = () => {
     const searchedTodos = sortedTodos.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase())
     );
+
+    useEffect(() => {
+        getLocalTodos();
+    }, []);
 
     //Function that set searched todo
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,10 +42,6 @@ const Todos = () => {
         }
     };
 
-    useEffect(() => {
-        getLocalTodos();
-    }, []);
-
     //Function that save todos to local storage
     const saveLocaleTodos = useCallback(() => {
         localStorage.setItem("MyTodos", JSON.stringify(todos));
@@ -60,12 +60,30 @@ const Todos = () => {
             <div className='search_todos'>
                 <input onChange={(e) => handleSearch(e)} type="text" placeholder='Search todo' />
             </div>
-            {todos.length < 1 ? <div className='no_todos'>There is no todos yet!</div> :
-                <Todo todos={searchedTodos} setTodos={setTodos} setItemForUpdate={setItemForUpdate} setUpdateFormVisible={setUpdateFormVisible} />
+            {todos.length < 1 ?
+                <div className='no_todos'>There is no todos yet!</div>
+                :
+                <Todo
+                    setTodos={setTodos}
+                    todos={searchedTodos}
+                    setItemForUpdate={setItemForUpdate}
+                    setUpdateFormVisible={setUpdateFormVisible}
+                />
             }
-            {crateFormVisible && <CreateTodo todos={todos} setTodos={setTodos} setCreateFormVisible={setCreateFormVisible} />}
+            {crateFormVisible &&
+                <CreateTodo
+                    todos={todos}
+                    setTodos={setTodos}
+                    setCreateFormVisible={setCreateFormVisible}
+                />}
 
-            {updateFormVisible && <UpdateTodo itemForUpdate={itemForUpdate} todos={todos} setTodos={setTodos} setUpdateFormVisible={setUpdateFormVisible} />}
+            {updateFormVisible &&
+                <UpdateTodo
+                    todos={todos}
+                    setTodos={setTodos}
+                    itemForUpdate={itemForUpdate}
+                    setUpdateFormVisible={setUpdateFormVisible}
+                />}
         </div>
     )
 }

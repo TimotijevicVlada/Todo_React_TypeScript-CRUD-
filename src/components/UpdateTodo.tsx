@@ -1,26 +1,18 @@
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import { useFormik } from 'formik';
 import { validate } from '../validation/Validation';
-import { TodosProps } from "./types/Types";
+import { UpdateProps } from "../types/types";
 
-type UpdateProps = {
-    itemForUpdate: TodosProps[]
-    todos: TodosProps[]
-    setTodos: React.Dispatch<React.SetStateAction<TodosProps[]>>
-    setUpdateFormVisible : React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const UpdateTodo = ({ itemForUpdate, todos, setTodos, setUpdateFormVisible }: UpdateProps) => {
+const UpdateTodo: React.FC<UpdateProps> = ({ itemForUpdate, todos, setTodos, setUpdateFormVisible }) => {
 
     const [successMessage, setSuccessMessage] = useState<boolean>(false);
     const formRef = useRef<HTMLFormElement>(null);
 
     //Function that exit the form when we click out of the form
-    //Insted of "React.MouseEvent<HTMLDivElement>" I put "any" because I couldn't solve the error with target
-    const handleExit = (event: any) => {
-            if (!formRef.current?.contains(event.target)) {
-                setUpdateFormVisible(false);
-            }
+    const handleExit = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (!formRef.current?.contains(event.target as HTMLDivElement)) {
+            setUpdateFormVisible(false);
+        }
     }
 
     //Formik library
@@ -39,11 +31,11 @@ const UpdateTodo = ({ itemForUpdate, todos, setTodos, setUpdateFormVisible }: Up
                     description: values.description,
                     date: values.date,
                 } : item);
-                setTodos(updatedTodos);
-                setSuccessMessage(true);
-                setTimeout(() => {
-                    setUpdateFormVisible(false);
-                }, 2000)
+            setTodos(updatedTodos);
+            setSuccessMessage(true);
+            setTimeout(() => {
+                setUpdateFormVisible(false);
+            }, 2000)
         },
     });
 

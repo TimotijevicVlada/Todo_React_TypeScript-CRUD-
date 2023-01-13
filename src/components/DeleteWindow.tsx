@@ -1,22 +1,14 @@
-import React, {useRef} from 'react';
-import {TodosProps} from "./types/Types";
+import React, { useRef } from 'react';
+import { DeleteProps } from "../types/types";
 
-type DeleteProps = {
-    itemForDeleting: TodosProps[]
-    todos: TodosProps[]
-    setTodos: React.Dispatch<React.SetStateAction<TodosProps[]>>
-    setDeleteWindowVisible : React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const DeleteWindow = ({itemForDeleting, todos, setTodos, setDeleteWindowVisible}: DeleteProps) => {
+const DeleteWindow: React.FC<DeleteProps> = ({ itemForDeleting, todos, setTodos, setDeleteWindowVisible }) => {
 
     const deleteRef = useRef<HTMLDivElement>(null);
     //Function that exit the form when we click out of the form
-    //Insted of "React.MouseEvent<HTMLDivElement>" I put "any" because I couldn't solve the error with target
-    const handleExit = (event: any) => {
-            if (!deleteRef.current?.contains(event.target)) {
-                setDeleteWindowVisible(false);
-            }
+    const handleExit = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (!deleteRef.current?.contains(event.target as HTMLDivElement)) {
+            setDeleteWindowVisible(false);
+        }
     }
 
     //Confirm deleting Item

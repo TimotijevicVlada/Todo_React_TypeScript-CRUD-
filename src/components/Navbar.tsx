@@ -1,17 +1,18 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import React, { useMemo } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
 
-    const [motivateVisible, setMotivateVisible] = useState<boolean>(false);
+    const location = useLocation();
+    const motivatePage = useMemo(() => location.pathname === "/motivate", [location]);
 
     return (
         <div className='navbar'>
             <div className='logo'>My Todos</div>
             <div className='btn'>
-                {motivateVisible ? <Link to="/" className='button' onClick={() => setMotivateVisible(false)}>I am motivated!</Link> : 
-                    <Link to="/motivate" className='button' onClick={() => setMotivateVisible(true)}>Motivate me!</Link>
-                }
+                <Link to={motivatePage ? "/" : "/motivate"} className='button'>
+                    {motivatePage ? "I am motivated!" : "Motivate me!"}
+                </Link>
             </div>
         </div>
     )

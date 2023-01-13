@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import { TodosProps } from "./types/Types";
+import { TodosProps } from "../types/types";
 import DeleteWindow from "./DeleteWindow";
 import Details from "./Details";
+import { TodoProps } from '../types/types';
 
-type TodoProps = {
-    todos: TodosProps[]
-    setTodos: (value: React.SetStateAction<TodosProps[]>) => void
-    setItemForUpdate: React.Dispatch<React.SetStateAction<TodosProps[]>>
-    setUpdateFormVisible: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const Todo = ({ todos, setTodos, setItemForUpdate, setUpdateFormVisible }: TodoProps) => {
+const Todo: React.FC<TodoProps> = ({ todos, setTodos, setItemForUpdate, setUpdateFormVisible }) => {
 
     const [itemForDeleting, setItemForDeleting] = useState<TodosProps[]>([]);
     const [deleteWindowVisible, setDeleteWindowVisible] = useState<boolean>(false);
@@ -38,23 +32,16 @@ const Todo = ({ todos, setTodos, setItemForUpdate, setUpdateFormVisible }: TodoP
         setDetailsVisible(true);
     }
 
-    //Handle complete 
+    //Handle check completed
     const completeHandler = (id: number) => {
-        setTodos(todos.map(item => {
-            if (item.id === id) {
-                return {
-                    ...item,
-                    completed: !item.completed
-                }
-            }
-            return item;
-        }))
+        const tempCompleted = todos.map(item => item.id === id ? { ...item, completed: !item.completed } : item);
+        setTodos(tempCompleted);
     }
 
     return (
         <div className='todos'>
             {todos.map((item, index) => (
-                <div key={item.id} className={item.completed ? "todo completed" : "todo"}>
+                <div key={index} className={`todo ${item.completed ? "completed" : ""}`}>
                     <div onClick={() => handleDetails(item.id)} className='todo_info'>
                         <span className='index'>#{index + 1}</span>
                         <span className='title'>{item.title}</span>
@@ -68,8 +55,17 @@ const Todo = ({ todos, setTodos, setItemForUpdate, setUpdateFormVisible }: TodoP
                     </div>
                 </div>
             ))}
-            {deleteWindowVisible && <DeleteWindow itemForDeleting={itemForDeleting} todos={todos} setTodos={setTodos} setDeleteWindowVisible={setDeleteWindowVisible} />}
-            {detailsVisible && <Details detailsItem={detailsItem} setDetailsVisible={setDetailsVisible} />}
+            {deleteWindowVisible &&
+                <DeleteWindow
+                    itemForDeleting={itemForDeleting}
+                    todos={todos} setTodos={setTodos}
+                    setDeleteWindowVisible={setDeleteWindowVisible}
+                />}
+            {detailsVisible &&
+                <Details
+                    detailsItem={detailsItem}
+                    setDetailsVisible={setDetailsVisible}
+                />}
         </div>
     )
 }

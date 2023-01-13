@@ -1,18 +1,12 @@
 import { useRef } from 'react';
-import { TodosProps } from './types/Types';
+import { DetailsProps } from '../types/types';
 
-type DetailsProps = {
-    detailsItem: TodosProps[]
-    setDetailsVisible: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const Details = ({ detailsItem, setDetailsVisible }: DetailsProps) => {
+const Details: React.FC<DetailsProps> = ({ detailsItem, setDetailsVisible }) => {
 
     const detailsRef = useRef<HTMLDivElement>(null);
     //Function that exit the form when we click out of the form
-    //Insted of "React.MouseEvent<HTMLDivElement>" I put "any" because I couldn't solve the error with target
-    const handleExit = (event: any) => {
-        if (!detailsRef.current?.contains(event.target)) {
+    const handleExit = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (!detailsRef.current?.contains(event.target as HTMLDivElement)) {
             setDetailsVisible(false);
         }
     }

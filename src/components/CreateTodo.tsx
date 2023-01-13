@@ -1,24 +1,18 @@
 import React, { useState, useRef } from 'react';
-import { TodosProps } from "./types/Types";
+import { CreateProps } from "../types/types";
 import { useFormik } from "formik";
 import { validate } from "../validation/Validation";
 
-type CreateProps = {
-    todos: TodosProps[]
-    setTodos: (todos: TodosProps[]) =>void;
-    setCreateFormVisible: (openForm: boolean) => void;
-}
-
-const CreateTodo = ({ todos, setTodos, setCreateFormVisible }: CreateProps) => {
+const CreateTodo: React.FC<CreateProps> = ({ todos, setTodos, setCreateFormVisible }) => {
 
     const [seccessMessage, setSuccessMessage] = useState<boolean>(false)
     const formRef = useRef<HTMLFormElement>(null);
 
     //Function that exit the form when we click out of the form
     const handleExit = (e: React.MouseEvent<HTMLDivElement>) => {
-            if (!formRef.current?.contains(e.target as HTMLDivElement)) {
-                setCreateFormVisible(false);
-            }
+        if (!formRef.current?.contains(e.target as HTMLDivElement)) {
+            setCreateFormVisible(false);
+        }
     }
 
     //Formik library
